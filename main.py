@@ -1,0 +1,1 @@
+#This Discord bot will have people split into balanced teams
