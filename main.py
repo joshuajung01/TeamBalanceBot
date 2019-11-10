@@ -16,4 +16,5 @@ async def onMessage(message):
         return
     if message.content == "ping"
         message.channel.send("pong")
+
 client.run(token)
