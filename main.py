@@ -2,7 +2,7 @@
 import os
 import discord
 
-token = "NjQyNzU3MDM5NDgyOTk0Njg4.Xcgy9g.F6YoameNcpiEScUOFbGvD_brKL0" #os.environ["DISCORD_TOKEN"]
+token = os.environ["DISCORD_TOKEN"]
 client = discord.Client()
 
 waitlist = {}
