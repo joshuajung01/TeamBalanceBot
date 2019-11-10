@@ -14,7 +14,7 @@ async def on_ready():
 async def onMessage(message):
     if message.author == client.user:
         return
-    if message.content == "ping"
+    if message.content == "ping":
         message.channel.send("pong")
 
 client.run(token)
