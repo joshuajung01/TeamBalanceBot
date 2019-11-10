@@ -1,8 +1,9 @@
 #This Discord bot will have people split into balanced teams
 import os
 import discord
+from boto.s3.connection import S3Connection
 
-token = os.getenv('DISCORD_TOKEN')
+token = S3Connection(os.environ['DISCORD_TOKEN'])
 
 client = discord.Client()
 
