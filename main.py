@@ -11,4 +11,9 @@ client = discord.Client()
 async def on_ready():
     print(f'{client.user} has connected to Discord!')
 
+asyn def onMessage(message):
+    if message.author == client.user:
+        return
+    if message.content == "ping"
+        message.channel.send("pong")
 client.run(token)
