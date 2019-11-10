@@ -3,7 +3,7 @@ import os
 import discord
 from boto.s3.connection import S3Connection
 
-token = S3Connection(os.environ['DISCORD_TOKEN'])
+token = S3Connection()
 client = discord.Client()
 
 @client.event
