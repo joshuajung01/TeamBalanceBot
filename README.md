@@ -6,6 +6,11 @@ TeamBalanceBot is...
 - [x] Creates Fair Custom Teams
 - [x] Prevents the Toxicty
 
+## Contents
+1. About TeamBalanceBot
+2. Getting Started
+3. About the Code
+4. About Me
 
 ## About TeamBalanceBot
 League of Legends is one of the world's most played video game. 
