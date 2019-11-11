@@ -108,7 +108,7 @@ async def on_ready():
     print(f'{client.user} has connected to Discord!')
 
 @client.event
-async def on_message(message):
+async def on_message(ctx, message):
     """This method will deal with all messages in the server"""
 
     global waitlist
@@ -200,7 +200,7 @@ async def on_message(message):
     if message.content.find("!!remove") != -1 and not message.author.bot:
         #To remove people in the queue. Must be an administrator in the guild
         try:
-            if message.author.server_permissions.administrator:
+            if ctx.message.author.server_permissions.administrator:
                 arr = str(message.content).split(" ")
                 removedName = arr[1]
                 if removedName in waitlist:
@@ -215,19 +215,19 @@ async def on_message(message):
                 await message.channel.send(str(message.author.mention) + " Removing specific people is only availible for administrators.")
         except:
             if not message.author.bot:
-                await message.channel.send("Unable to remove name try again")
+                await message.channel.send("Unable to remove player.")
 
     if message.content.find("!!clear") != -1 and not message.author.bot:
         #To clear the queue. Must be an administrator in the guild
         try:
-            if message.author.server_permissions.administrator:
+            if ctx.message.author.server_permissions.administrator:
                 waitlist = {}
-                await message.channel.send(str(message.author.mention)+" Registration for the custom game has been cleared.")
+                await message.channel.send(str(message.author.mention) + " Registration for the custom game has been cleared.")
             else:
                 await message.channel.send(str(message.author.mention) + " Clearing registration is only availible for administrators.")
         except:
             if not message.author.bot:
-                await message.channel.send("Unable to clear. Try again.")
+                await message.channel.send("Unable to clear.")
 
     elif message.content.find("!!help") != -1 and not message.author.bot:
         # To see the commands to control the bot
