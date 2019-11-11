@@ -216,7 +216,8 @@ async def on_message(message):
         await message.channel.send("Here are the commands to control TeamBalanceBot:\n"
                                    "!register - Register to play in the custom game\n"
                                    "!unregister - Remove yourself from the custom game\n"
-                                   "!remove - Allow mods to remove a person from the custom game"
+                                   "!remove - Allow administrators to remove a person from the custom game\n"
+                                   "!clear - Allow administrators to clear the registration board\n"
                                    "!show queue - Shows who is registered to play in the custom game\n"
                                    "!make teams - Makes the two balanced teams for the custom game\n"
                                    "!help - See the commands to control TeamBalanceBot\n")
