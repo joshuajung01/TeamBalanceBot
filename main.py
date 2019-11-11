@@ -204,6 +204,14 @@ async def on_message(message):
             if not message.author.bot:
                 await message.channel.send("Unable to remove name try again")
 
+    if message.content.find("!clear") != -1 and not message.author.bot and message.author.server_permissions.administrator: #To see who is registered in the queue
+        try:
+            waitlist = {}
+            await message.channel.send(str(message.author.mention)+" Registration for the custom game has been cleared.")
+        except:
+            if not message.author.bot:
+                await message.channel.send("Unable to clear. Try again.")
+
     elif message.content.find("!help") != -1 and not message.author.bot:  # To see the commands to control the bot
         await message.channel.send("Here are the commands to control TeamBalanceBot:\n"
                                    "!register - Register to play in the custom game\n"
