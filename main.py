@@ -145,7 +145,7 @@ async def on_message(message):
             else:
                 await message.channel.send("Sorry, "+str(message.author.mention) + "there are already 10 people registered to play")
         except:
-            await message.channel.send("Invalid command\nFormat: !register Rank LP\n\nEx: !register g4 50\nRegister as a Gold 4 50 LP player")
+            await message.channel.send("Invalid command\nFormat: !!register Rank LP\n\nEx: !!register g4 50\nRegister as a Gold 4 50 LP player")
 
 
 
