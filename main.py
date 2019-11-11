@@ -13,12 +13,12 @@ waitlist = {}
 
 def findValue(rank):
     """
-    Calculates how good a member is using their rank
+    Calculates the "value" of a member using their rank
     rank = ("rank","lp")
     """
     value = 100
     arr = list(rank[0])
-    if "i" in arr or "I" in arr:
+    if "i" in arr or "I" in arr: #Calculations for Iron Players
         if arr[1] == "4":
             value = value * .0 + ((int(rank[1])/100)*.048)
         elif arr[1] == "3":
@@ -28,7 +28,7 @@ def findValue(rank):
         elif arr[1] == "1":
             value = value * .898 + ((int(rank[1]) / 100)*.91)
 
-    elif "b" in arr or "B" in arr:
+    elif "b" in arr or "B" in arr: #Calculations for Bronze Players
         if arr[1] == "4":
             value = value * 1.808 + ((int(rank[1])/100)*2)
         elif arr[1] == "3":
@@ -38,7 +38,7 @@ def findValue(rank):
         elif arr[1] == "1":
             value = value * 9.908 + ((int(rank[1]) / 100)*5.8)
 
-    elif "s" in arr or "S" in arr:
+    elif "s" in arr or "S" in arr: #Calculations for Silver Players
         if arr[1] == "4":
             value = value * 15.708 + ((int(rank[1])/100)*8.8)
         elif arr[1] == "3":
@@ -48,7 +48,7 @@ def findValue(rank):
         elif arr[1] == "1":
             value = value * 39.808 + ((int(rank[1]) / 100)*7.7)
 
-    elif ("g" in arr or "G" in arr) and not ("m" in arr or "M" in arr):
+    elif ("g" in arr or "G" in arr) and not ("m" in arr or "M" in arr): #Calculations for Gold Players
         if arr[1] == "4":
             value = value * 47.008 + ((int(rank[1])/100)*14)
         elif arr[1] == "3":
@@ -58,7 +58,7 @@ def findValue(rank):
         elif arr[1] == "1":
             value = value * 75.408 + ((int(rank[1]) / 100)*4.2)
 
-    elif "p" in arr or "P" in arr:
+    elif "p" in arr or "P" in arr: #Calculations for Platinum Players
         if arr[1] == "4":
             value = value * 79.608 + ((int(rank[1])/100)*8.5)
         elif arr[1] == "3":
@@ -68,7 +68,7 @@ def findValue(rank):
         elif arr[1] == "1":
             value = value * 93.108 + ((int(rank[1]) / 100)*1.9)
 
-    elif "d" in arr or "D" in arr:
+    elif "d" in arr or "D" in arr: #Calculations for Diamond Players
         if arr[1] == "4":
             value = value * 95.008 + ((int(rank[1])/100)*2.2)
         elif arr[1] == "3":
@@ -78,21 +78,24 @@ def findValue(rank):
         elif arr[1] == "1":
             value = value * 98.338 + ((int(rank[1]) / 100)*.19)
 
-    elif ("m" in arr or "M" in arr) and not("g" in arr or "G" in arr):
+    elif ("m" in arr or "M" in arr) and not("g" in arr or "G" in arr): #Calculations for Master Players
         value = value * 98.528
 
-    elif ("g" in arr or "G" in arr) and ("m" in arr or "M" in arr):
+    elif ("g" in arr or "G" in arr) and ("m" in arr or "M" in arr): #Calculations for GrandMaster Players
         value = value * 98.587
 
-    elif "c" in arr or "C" in arr:
+    elif "c" in arr or "C" in arr: #Calculations for Challenger Players
         value = value * 98.937
 
     else:
-        value = 5000
+        value = 5000 #Default value just in case something goes wrong
 
     return value
 
 def findTeamValue(team):
+    """
+    Finds the sum of the "value" of all team members on teh team
+    """
     value = 0
     for member in team:
         value += float(team[member])
@@ -110,7 +113,8 @@ async def on_message(message):
 
     global waitlist
 
-    if message.content.find("!show queue") != -1 and not message.author.bot: #To see who is registered in the queue
+    if message.content.find("!!show queue") != -1 and not message.author.bot:
+        #To see who is registered in the queue
         try:
             queue = "These are the people in the queue:"
             if len(waitlist) == 0:
@@ -125,7 +129,8 @@ async def on_message(message):
 
 
 
-    elif message.content.find("!register") != -1 and not message.author.bot: #To register in the game
+    elif message.content.find("!!register") != -1 and not message.author.bot:
+        #To register in the game
         try:
             if len(waitlist) < 11:
                 if message.author.name in waitlist:
@@ -133,7 +138,7 @@ async def on_message(message):
                 else:
                     arr = str(message.content).split(" ")
                     if len(arr[1]) < 4 and arr[1].isalnum() and arr[2].isdigit():
-                        waitlist[str(message.author.name)]=(arr[1], arr[2])
+                        waitlist[str(message.author.name)] = (arr[1], arr[2])
                         await message.channel.send(str(message.author.mention) + " you are registered")
                     else:
                         await message.channel.send(str(message.author.mention) + "Something went wrong please try again\nEx: !register s1 67")
@@ -144,7 +149,8 @@ async def on_message(message):
 
 
 
-    elif message.content.find("!unregister") != -1 and not message.author.bot: #To remove yourself from the game
+    elif message.content.find("!!unregister") != -1 and not message.author.bot:
+        #To remove yourself from the game
         try:
             for member in waitlist:
                 if str(message.author.name) == member:
@@ -155,7 +161,8 @@ async def on_message(message):
             if not message.author.bot:
                 await message.channel.send("Unable to remove from registration")
 
-    elif message.content.find("!make teams") != -1 and not message.author.bot:#makes evenly balanced teams and resets the queue
+    elif message.content.find("!!make teams") != -1 and not message.author.bot:
+        #Makes evenly balanced teams and resets the queue
         team1 = {}
         team2 = {}
 
@@ -188,7 +195,8 @@ async def on_message(message):
         await message.channel.send(team1list+team2list)
         waitlist = {}
 
-    if message.content.find("!remove") != -1 and not message.author.bot and message.author.server_permissions.administrator: #To see who is registered in the queue
+    if message.content.find("!!remove") != -1 and not message.author.bot and message.author.server_permissions.administrator:
+        #To remove people in the queue. Must be an administrator in the guild
         try:
             arr = str(message.content).split(" ")
             removedName = arr[1]
@@ -204,7 +212,8 @@ async def on_message(message):
             if not message.author.bot:
                 await message.channel.send("Unable to remove name try again")
 
-    if message.content.find("!clear") != -1 and not message.author.bot and message.author.server_permissions.administrator: #To see who is registered in the queue
+    if message.content.find("!!clear") != -1 and not message.author.bot and message.author.server_permissions.administrator:
+        #To clear the queue. Must be an administrator in the guild
         try:
             waitlist = {}
             await message.channel.send(str(message.author.mention)+" Registration for the custom game has been cleared.")
@@ -212,14 +221,15 @@ async def on_message(message):
             if not message.author.bot:
                 await message.channel.send("Unable to clear. Try again.")
 
-    elif message.content.find("!help") != -1 and not message.author.bot:  # To see the commands to control the bot
+    elif message.content.find("!!help") != -1 and not message.author.bot:
+        # To see the commands to control the bot
         await message.channel.send("Here are the commands to control TeamBalanceBot:\n"
-                                   "!register - Register to play in the custom game\n"
-                                   "!unregister - Remove yourself from the custom game\n"
-                                   "!remove - Allow administrators to remove a person from the custom game\n"
-                                   "!clear - Allow administrators to clear the registration board\n"
-                                   "!show queue - Shows who is registered to play in the custom game\n"
-                                   "!make teams - Makes the two balanced teams for the custom game\n"
-                                   "!help - See the commands to control TeamBalanceBot\n")
+                                   "!!register - Register to play in the custom game\n"
+                                   "!!unregister - Remove yourself from the custom game\n"
+                                   "!!remove - Allow administrators to remove a person from the custom game\n"
+                                   "!!clear - Allow administrators to clear the registration board\n"
+                                   "!!show queue - Shows who is registered to play in the custom game\n"
+                                   "!!make teams - Makes the two balanced teams for the custom game\n"
+                                   "!!help - See the commands to control TeamBalanceBot\n")
 
 client.run(token)
