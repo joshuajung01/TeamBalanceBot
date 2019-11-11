@@ -59,7 +59,7 @@ The bot is hosted on Heroku. Heroku deploys the bot by using a worker.  This wor
 ## About me 
 Hi, my name is Joshua Jung, and I am a freshman computer science major at Texas A&M University.  
 My inspiration for this bot was from my personal experience playing in League of Legends custom matches.
-Me and my friends would often play games together, but they always ended the same:
+My friends and I would often play games together, but they always ended the same:
 
 **PSHAW** "The teams weren't _fair!_", "You guys got _lucky_ you had ____ player", "Honestly my teamates are sooo **Trash**"
 
