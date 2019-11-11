@@ -108,7 +108,7 @@ async def on_ready():
     print(f'{client.user} has connected to Discord!')
 
 @client.event
-async def on_message(ctx, message):
+async def on_message(message):
     """This method will deal with all messages in the server"""
 
     global waitlist
@@ -200,7 +200,7 @@ async def on_message(ctx, message):
     if message.content.find("!!remove") != -1 and not message.author.bot:
         #To remove people in the queue. Must be an administrator in the guild
         try:
-            if ctx.message.author.server_permissions.administrator:
+            if message.author.server_permissions.administrator:
                 arr = str(message.content).split(" ")
                 removedName = arr[1]
                 if removedName in waitlist:
@@ -220,7 +220,7 @@ async def on_message(ctx, message):
     if message.content.find("!!clear") != -1 and not message.author.bot:
         #To clear the queue. Must be an administrator in the guild
         try:
-            if ctx.message.author.server_permissions.administrator:
+            if message.author.server_permissions.administrator:
                 waitlist = {}
                 await message.channel.send(str(message.author.mention) + " Registration for the custom game has been cleared.")
             else:
