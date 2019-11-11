@@ -30,10 +30,10 @@ Custom matches naturally become more competitive because the teams' overall skil
 
 ## Getting started
 
-###Installation
+### Installation
 Invite the bot to you server [here](https://discordapp.com/api/oauth2/authorize?client_id=642757039482994688&permissions=0&scope=bot)
 
-###Commands 
+### Commands 
 
 Here are the commands to control TeamBalanceBot
 - !register => Register to play in the custom game
