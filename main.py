@@ -1,4 +1,8 @@
-#This Discord bot will have people split into balanced teams
+# This Discord bot is meant for gamers who play League of Legends.
+# The bot splits 10 players into balanced teams
+# In high school, my friends and I always struggled to make fair teams when playing custom matches.
+# This bot will hopefully create more unbiased fair teams.
+
 import os
 import discord
 
@@ -103,8 +107,10 @@ async def on_ready():
 @client.event
 async def on_message(message):
     """This method will deal with all messages in the server"""
+
     global waitlist
-    if message.content.find("!show queue") != -1 and not message.author.bot:#To see who is in the queue
+
+    if message.content.find("!show queue") != -1 and not message.author.bot: #To see who is registered in the queue
         try:
             queue = "These are the people in the queue:"
             if len(waitlist) == 0:
@@ -119,31 +125,37 @@ async def on_message(message):
 
 
 
-    elif message.content.find("!register") != -1 and not message.author.bot:
+    elif message.content.find("!register") != -1 and not message.author.bot: #To register in the game
         try:
-            if message.author.name in waitlist:
-                await message.channel.send(str(message.author.mention)+" is already registered\nRegistration Denied")
+            if len(waitlist) < 11:
+                if message.author.name in waitlist:
+                    await message.channel.send(str(message.author.mention)+" is already registered\nRegistration Denied")
+                else:
+                    arr = str(message.content).split(" ")
+                    if len(arr[1]) < 4 and arr[1].isalnum() and arr[2].isdigit():
+                        waitlist[str(message.author.name)]=(arr[1], arr[2])
+                        await message.channel.send(str(message.author.mention) + " you are registered")
+                    else:
+                        await message.channel.send(str(message.author.mention) + "Something went wrong please try again\nEx: !register s1 67")
             else:
-                arr = str(message.content).split(" ")
-                waitlist[str(message.author.name)]=(arr[1], arr[2])
-                await message.channel.send(str(message.author.mention) + " you are registered")
+                await message.channel.send("Sorry, "+str(message.author.mention) + "there are already 10 people registered to play")
         except:
             await message.channel.send("Invalid command\nFormat: !register Rank LP\n\nEx: !register g4 50\nRegister as a Gold 4 50 LP player")
 
 
 
-    elif message.content.find("!unregister") != -1 and not message.author.bot:
+    elif message.content.find("!unregister") != -1 and not message.author.bot: #To remove yourself from the game
         try:
             for member in waitlist:
                 if str(message.author.name) == member:
                     waitlist.pop(member)
-                    await message.channel.send(str(message.author.name)+" is successfully removed from the queue")
+                    await message.channel.send(str(message.author.mention)+" you have been successfully unregistered")
                     break
         except:
             if not message.author.bot:
                 await message.channel.send("Unable to remove from registration")
 
-    elif message.content.find("!make teams") != -1 and not message.author.bot:
+    elif message.content.find("!make teams") != -1 and not message.author.bot:#makes evenly balanced teams and resets the queue
         team1 = {}
         team2 = {}
 
@@ -175,5 +187,30 @@ async def on_message(message):
 
         await message.channel.send(team1list+team2list)
         waitlist = {}
+
+    if message.content.find("!remove") != -1 and not message.author.bot and message.author.server_permissions.administrator: #To see who is registered in the queue
+        try:
+            arr = str(message.content).split(" ")
+            removedName = arr[1]
+            if removedName in waitlist:
+                for member in waitlist:
+                    if removedName == member:
+                        waitlist.pop(member)
+                        await message.channel.send(str(message.author.mention) + " you have been successfully removed"+removedName)
+                        break
+            else:
+                await message.channel.send(str(message.author.mention) + " " + removedName + " is not registered to play in the custom game")
+        except:
+            if not message.author.bot:
+                await message.channel.send("Unable to remove name try again")
+
+    elif message.content.find("!help") != -1 and not message.author.bot:  # To see the commands to control the bot
+        await message.channel.send("Here are the commands to control TeamBalanceBot:\n"
+                                   "!register - Register to play in the custom game\n"
+                                   "!unregister - Remove yourself from the custom game\n"
+                                   "!remove - Allow mods to remove a person from the custom game"
+                                   "!show queue - Shows who is registered to play in the custom game\n"
+                                   "!make teams - Makes the two balanced teams for the custom game\n"
+                                   "!help - See the commands to control TeamBalanceBot\n")
 
 client.run(token)
