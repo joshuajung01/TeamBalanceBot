@@ -19,7 +19,7 @@ Custom Matches in League of Legends matches are unfair and the matches are not c
 This leads to toxicity and an overall negative experience playing the game.
 
 ### The Solution
-TeamBalanceBot accounts for each player's skill level to make the most balanced team possible for custom games.  
+TeamBalanceBot accounts for each player's skill level to make the most balanced teams possible for custom games.  
 Originally I made the bot calculate each player's skill based off the rank linearly, but this is flawed because the learning curve of the game is not linear.
 Instead, my bot now creates the teams by assining values to each player based on the percentile of their rank, so now each players rank scales accurately.
 This data was collected online at [link](https://www.leagueofgraphs.com/rankings/rank-distribution)
