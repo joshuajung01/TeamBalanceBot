@@ -41,13 +41,13 @@ Invite the bot to you server [here](https://discordapp.com/api/oauth2/authorize?
 ### Commands 
 
 Here are the commands to control TeamBalanceBot
-- !register => Register to play in the custom game
-- !unregister => Remove yourself from the custom game
-- !remove => Allow mods to remove a person from the custom game
-- !show queue => Shows who is registered to play in the custom game
-- !make teams => Makes the two balanced teams for the custom game
-- !clear => Clears the registration board
-- !help => See the commands to control TeamBalanceBot
+- !!register => Register to play in the custom game
+- !!unregister => Remove yourself from the custom game
+- !!remove => Allow mods to remove a person from the custom game
+- !!show queue => Shows who is registered to play in the custom game
+- !!make teams => Makes the two balanced teams for the custom game
+- !!clear => Clears the registration board
+- !!help => See the commands to control TeamBalanceBot
 
 ## About the Code
 
