@@ -36,7 +36,7 @@ Custom matches naturally become more competitive because the teams' overall skil
 ## Getting started
 
 ### Installation
-Invite the bot to you server [here](https://discordapp.com/api/oauth2/authorize?client_id=642757039482994688&permissions=0&scope=bot)
+Invite the bot to your server [here](https://discordapp.com/api/oauth2/authorize?client_id=642757039482994688&permissions=0&scope=bot)
 
 ### Commands 
 
