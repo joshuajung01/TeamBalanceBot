@@ -79,7 +79,7 @@ My friends and I would often play games together, but they always ended the same
 
 This type of toxic mentality and excuses were always prevelant at the end of your games.  
 This would always happend because of our inability to make fair teams that would create competitive gameplay. 
-With the TeamBalanceBot my friends and I are able to create fair teams, so that we can settle our differences and have an undisputed winner. 
+With the TeamBalanceBot, my friends and I are able to create fair teams, so that we can settle our differences and have an undisputed winner. 
 
 Thanks for checking out TeamBalanceBot.  
 It has a lot of room for improvement, but I tried my best to create a simple problem to an age-old problem.
