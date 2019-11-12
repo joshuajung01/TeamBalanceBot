@@ -1,5 +1,5 @@
 # TeamBalanceBot for League of Legends 
-This bot is to help make fair competitive custom matches amongst friends
+This discord bot is to help make fair competitive custom matches amongst friends
 
 TeamBalanceBot is...
 - [x] Easy to use
@@ -20,14 +20,14 @@ One of the many game modes in League of Legends is custom matches.
 In custom matches 10 players get in a lobby and face off in a 5 v 5 match.  Since the teams need to be created manually, the teams are often unbalanced.  TeamBalanceBot now automatically creates fair teams for the users.
 
 ### The Problem
-Custom Matches in League of Legends matches are unfair and the matches are not competitive. 
+Custom Matches in League of Legends matches are unfair and the matches are not competitive because the players have to manually balance teams. 
 This leads to toxicity and an overall negative experience playing the game.
 
 ### The Solution
-TeamBalanceBot accounts for each player's skill level to make the most balanced teams possible for custom games.  
+TeamBalanceBot accounts for each player's skill level to make the most balanced teams possible for custom games automatically.  
 Originally I made the bot calculate each player's skill based off the rank linearly, but this is flawed because the learning curve of the game is not linear.
-Instead, my bot now creates the teams by assining values to each player based on the percentile of their rank, so now each players rank scales accurately.
-This data was collected online at [link](https://www.leagueofgraphs.com/rankings/rank-distribution)
+Instead, my bot now creates the teams by assining values to each player based on the percentile of their rank, so now each players rank scales accurately and exponentially.
+The data for player distribution across ranks was collected online at [link](https://www.leagueofgraphs.com/rankings/rank-distribution)
 
 TeamBalanceBot will use 10 registered players to form the "most fair" teams possible quickly, efficiently, and accurately.
 This removes the hassle of trying to even out teams manually.  
