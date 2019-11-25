@@ -200,19 +200,19 @@ async def on_message(message):
     if message.content.find("!!remove") != -1 and not message.author.bot:
         #To remove people in the queue. Must be an administrator in the guild
         try:
-            if message.author.server_permissions.administrator:
-                arr = str(message.content).split(" ")
-                removedName = arr[1]
-                if removedName in waitlist:
-                    for member in waitlist:
-                        if removedName == member:
-                            waitlist.pop(member)
-                            await message.channel.send(str(message.author.mention) + " you have been successfully removed "+removedName)
-                            break
-                else:
-                   await message.channel.send(str(message.author.mention) + " " + removedName + " is not registered to play in the custom game.")
+            # if message.author.server_permissions.administrator:
+            arr = str(message.content).split(" ")
+            removedName = arr[1]
+            if removedName in waitlist:
+                for member in waitlist:
+                    if removedName == member:
+                        waitlist.pop(member)
+                        await message.channel.send(str(message.author.mention) + " you have been successfully removed "+removedName)
+                        break
             else:
-                await message.channel.send(str(message.author.mention) + " Removing specific people is only availible for administrators.")
+               await message.channel.send(str(message.author.mention) + " " + removedName + " is not registered to play in the custom game.")
+            # else:
+            #     await message.channel.send(str(message.author.mention) + " Removing specific people is only availible for administrators.")
         except:
             if not message.author.bot:
                 await message.channel.send("Unable to remove player.")
@@ -220,11 +220,11 @@ async def on_message(message):
     if message.content.find("!!clear") != -1 and not message.author.bot:
         #To clear the queue. Must be an administrator in the guild
         try:
-            if message.author.server_permissions.administrator:
-                waitlist = {}
-                await message.channel.send(str(message.author.mention) + " Registration for the custom game has been cleared.")
-            else:
-                await message.channel.send(str(message.author.mention) + " Clearing registration is only availible for administrators.")
+            # if message.author.server_permissions.administrator:
+            #     waitlist = {}
+            await message.channel.send(str(message.author.mention) + " Registration for the custom game has been cleared.")
+            # else:
+            #     await message.channel.send(str(message.author.mention) + " Clearing registration is only availible for administrators.")
         except:
             if not message.author.bot:
                 await message.channel.send("Unable to clear.")
