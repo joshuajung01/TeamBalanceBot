@@ -221,7 +221,7 @@ async def on_message(message):
         #To clear the queue. Must be an administrator in the guild
         try:
             # if message.author.server_permissions.administrator:
-            #     waitlist = {}
+            waitlist = {}
             await message.channel.send(str(message.author.mention) + " Registration for the custom game has been cleared.")
             # else:
             #     await message.channel.send(str(message.author.mention) + " Clearing registration is only availible for administrators.")
